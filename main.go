@@ -4,6 +4,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"time"
 )
 
 type Operation string
@@ -47,4 +48,9 @@ func main() {
 
 	fmt.Printf("Selected image: %s\n", filename)
 	fmt.Printf("Selected operation: %s\n", operation)
+
+	err := Upload(filename, "uppic-image-bucket", time.Now().String()+filename)
+	if err != nil {
+		fmt.Println("Error when uploading file: ", err)
+	}
 }
